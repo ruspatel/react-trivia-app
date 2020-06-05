@@ -8,7 +8,7 @@ const App = () =>{
   const [score, setScore] = useState(0); // keeping track of score
   const [newQ, setNewQ] = useState(false); // used to change questions
   
-  const URL = "https://opentdb.com/api.php?amount=1&type=boolean&category=10";
+  const URL = "https://opentdb.com/api.php?amount=1&type=boolean";
 
 
   useEffect(() => {
