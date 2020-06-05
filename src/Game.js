@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
+
 import './App.css';
 
-const App = () =>{
+const Game = () =>{
 
   const [trivia, getTrivia] = useState([]); // used to retrieve actual questions
   const [count, setCount] = useState(0); // keeping track of number of quesitons
@@ -30,6 +32,8 @@ const App = () =>{
   const checkAnswerTrue = (e) => {
     if(count < 10){
       setCount(count + 1);
+    }else{
+        gameover();
     }
 
     if("True" === e.target.value){
@@ -44,6 +48,8 @@ const App = () =>{
   const checkAnswerFalse = (e) => {
     if(count < 10){
       setCount(count + 1);
+    }else{
+        gameover();
     }
     if("False" === e.target.value){
       console.log("Yay, you got it right!");
@@ -85,4 +91,11 @@ const App = () =>{
   );
 }
 
-export default App;
+
+function gameover(){
+    return(
+        <Redirect to="/end"/>
+    );
+}
+
+export default Game;
