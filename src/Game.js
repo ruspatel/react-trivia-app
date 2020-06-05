@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, Switch, Redirect, useHistory} from 'react-router-dom';
 
 import './App.css';
 
 const Game = () =>{
+
+const history = useHistory();
 
   const [trivia, getTrivia] = useState([]); // used to retrieve actual questions
   const [count, setCount] = useState(0); // keeping track of number of quesitons
@@ -32,32 +34,39 @@ const Game = () =>{
   const checkAnswerTrue = (e) => {
     if(count < 10){
       setCount(count + 1);
+      if("True" === e.target.value){
+        console.log("Yay, you got it right!");
+        setScore(score + 1);
+      }else{
+        console.log("sorry, thats incorrect!");
+      }
+      setNewQ(!newQ);
+
     }else{
-        gameover();
+        // return <Redirect exact="true" to="/end"/>
+        history.push('/end');
     }
 
-    if("True" === e.target.value){
-      console.log("Yay, you got it right!");
-      setScore(score + 1);
-    }else{
-      console.log("sorry, thats incorrect!");
-    }
-    setNewQ(!newQ);
+    
   }
 
   const checkAnswerFalse = (e) => {
     if(count < 10){
       setCount(count + 1);
+      if("False" === e.target.value){
+        console.log("Yay, you got it right!");
+        setScore(score + 1);
+      }else{
+        console.log("sorry, thats incorrect!");
+      }
+      setNewQ(!newQ);
+
     }else{
-        gameover();
+        // return <Redirect to="/end"/>
+        history.push('/end');
+
     }
-    if("False" === e.target.value){
-      console.log("Yay, you got it right!");
-      setScore(score + 1);
-    }else{
-      console.log("sorry, thats incorrect!");
-    }
-    setNewQ(!newQ);
+    
 
   }
 
