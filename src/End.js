@@ -9,6 +9,7 @@ function End(){
   return (
     <div className="App">
         <h1>Game over</h1>
+        <Link to="/game">New Game</Link>
     </div>
   );
 }
